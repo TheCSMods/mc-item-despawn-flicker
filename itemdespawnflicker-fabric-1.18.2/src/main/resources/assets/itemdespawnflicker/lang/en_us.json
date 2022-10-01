@@ -1,0 +1,8 @@
+{
+    "itemdespawnflicker.__comment": "Trying to use pre-defined keys so I don't have to translate.",
+    "itemdespawnflicker": "Item Despawn Flicker",
+    "itemdespawnflicker.gui.config.general": "ref=itemdespawnflicker",
+    "itemdespawnflicker.config.ENABLED": "ref=addServer.resourcePack.enabled",
+    "itemdespawnflicker.config.ENABLED.true": "ref=addServer.resourcePack.enabled",
+    "itemdespawnflicker.config.ENABLED.false": "ref=addServer.resourcePack.disabled"
+}
