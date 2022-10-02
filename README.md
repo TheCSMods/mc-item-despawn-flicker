@@ -5,7 +5,11 @@ Also, if you have any photosensitivity issues, maybe it is best for you not to l
 ## Mod description
 Did you ever try to pick up an item only for it to despawn right in front of you as you're about to pick it up? Wouldn't it be much better if you could know when an item is about to despawn? This mod helps you out with this issue by making items flicker before they despawn, similar to how some other games do it.
 
-![idf_showcase](https://user-images.githubusercontent.com/66475965/193444677-7f445136-b64d-4c4c-9809-04379d82650f.gif)
+<details>
+    <summary>Here is a GIF of what the item flickering looks like</summary>
+<img src="https://user-images.githubusercontent.com/66475965/193444677-7f445136-b64d-4c4c-9809-04379d82650f.gif"/><br/>
+(the gif framerate is 10fps so the flickering may look a bit off)
+</details>
 
 ## Dependencies
 - [Fabric API](https://modrinth.com/mod/fabric-api) - <b>Required</b> - The Fabric API is used by this mod for networking and event handling reasons.
