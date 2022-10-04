@@ -31,3 +31,9 @@ Did you ever try to pick up an item only for it to despawn right in front of you
 
 #### I saw an item despawn without flickering, what happened?
 - Three (3) possible reasons. One being the server not having the mod installed, another one being the mod being disabled on the server (see the mod's config), and yet another one being a bug. The bug has to do with the item age not synchronizing properly with the client when artificially modifying it via a command or a data pack or another mod. I chose not to patch this bug for now as it would cause a lot of bandwidth being used up as well as some performance issues. This of course can be problematic, especially to those with a bad connection to a server or limited data. I will look into finding an optimal patch for this bug. So unless you're modifying an item's age artificially, everything should be fine.
+
+##
+<p align=center>
+  <a href="https://www.curseforge.com/minecraft/mc-mods/better-stats"><img alt="CurseForge" src="https://cf.way2muchnoise.eu/683160.svg"/></a>
+  <a href="https://modrinth.com/mod/better-stats"><img alt="Modrinth" src="https://img.shields.io/modrinth/dt/7Dbj5Y8g?label=Modrinth"></a>
+</p>
