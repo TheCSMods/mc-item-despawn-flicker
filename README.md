@@ -34,6 +34,6 @@ Did you ever try to pick up an item only for it to despawn right in front of you
 
 ##
 <p align=center>
-  <a href="https://www.curseforge.com/minecraft/mc-mods/better-stats"><img alt="CurseForge" src="https://cf.way2muchnoise.eu/683160.svg"/></a>
-  <a href="https://modrinth.com/mod/better-stats"><img alt="Modrinth" src="https://img.shields.io/modrinth/dt/7Dbj5Y8g?label=Modrinth"></a>
+  <a href="https://www.curseforge.com/minecraft/mc-mods/item-despawn-flicker"><img alt="CurseForge" src="https://cf.way2muchnoise.eu/683160.svg"/></a>
+  <a href="https://modrinth.com/mod/item-despawn-flicker"><img alt="Modrinth" src="https://img.shields.io/modrinth/dt/7Dbj5Y8g?label=Modrinth"></a>
 </p>
