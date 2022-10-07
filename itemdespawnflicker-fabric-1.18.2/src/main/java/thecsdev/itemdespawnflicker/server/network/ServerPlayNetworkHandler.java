@@ -24,6 +24,7 @@ public final class ServerPlayNetworkHandler
 		if(registered) return;
 		registered = true;
 		
+		//got nothing for now...
 	}
 	// ==================================================
 	/**
