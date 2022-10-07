@@ -9,6 +9,6 @@ public final class IDFClient extends IDF implements ClientModInitializer
 	@Override
 	public void onInitializeClient()
 	{
-		ClientPlayNetworkHandler.register();
+		ClientPlayNetworkHandler.registerEventHandlers();
 	}
 }

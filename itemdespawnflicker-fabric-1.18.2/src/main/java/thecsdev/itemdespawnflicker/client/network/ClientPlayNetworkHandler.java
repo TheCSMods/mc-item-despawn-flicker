@@ -2,6 +2,7 @@ package thecsdev.itemdespawnflicker.client.network;
 
 import static thecsdev.itemdespawnflicker.network.PlayNetworkChannels.PNC_ENTITY_AGE;
 
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -29,7 +30,7 @@ public final class ClientPlayNetworkHandler
 	// ==================================================
 	private ClientPlayNetworkHandler() {}
 	// ==================================================
-	public static void register()
+	public static void registerEventHandlers()
 	{
 		//flag
 		if(registered) return;
@@ -51,11 +52,12 @@ public final class ClientPlayNetworkHandler
 				Vector2 eaqEntryV = eaqEntry.getValue();
 				
 				//handle the timeout
-				eaqEntryV.y--; //tick by tick, reduce the timeout
-				if(eaqEntryV.y < 0)
+				if(eaqEntryV.y > 0) eaqEntryV.y--; //tick by tick, reduce the timeout
+				else
 				{
 					//timed out, remove it
-					entityAgeQueueIterator.remove();
+					try { entityAgeQueueIterator.remove(); }
+					catch(ConcurrentModificationException cme) { /*(2) you too, just for good measure*/ }
 					return;
 				}
 				
@@ -72,7 +74,9 @@ public final class ClientPlayNetworkHandler
 				else ((MixinItemEntity)entity).setItemAge(entityAge);
 				
 				//done. now remove it
-				entityAgeQueueIterator.remove();
+				eaqEntryV.y = -1; //time it out, just in case the removal fails
+				try { entityAgeQueueIterator.remove(); }
+				catch(ConcurrentModificationException cme) { /*(1) ah no you don't, not anymore*/ }
 			}
 		});
 		

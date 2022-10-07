@@ -14,7 +14,17 @@ import net.minecraft.server.world.ServerWorld;
 public final class ServerPlayNetworkHandler
 {
 	// ==================================================
+	private static boolean registered = false;
+	// ==================================================
 	private ServerPlayNetworkHandler() {}
+	// ==================================================
+	public static void registerEventHandlers()
+	{
+		//flag
+		if(registered) return;
+		registered = true;
+		
+	}
 	// ==================================================
 	/**
 	 * Lets all the "in-range" clients know what a given entity's
