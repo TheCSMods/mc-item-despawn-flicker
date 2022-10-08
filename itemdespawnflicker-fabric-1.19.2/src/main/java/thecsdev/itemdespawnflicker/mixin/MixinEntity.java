@@ -22,7 +22,7 @@ import net.minecraft.nbt.NbtCompound;
 public abstract class MixinEntity
 {
 	// ==================================================
-	private static final int itemdespawnflicker_wait = 5000;
+	private static final int itemdespawnflicker_wait = 4000;
 	// --------------------------------------------------
 	private long itemdespawnflicker_lastUpdateTime = System.currentTimeMillis() - itemdespawnflicker_wait - 1;
 	private boolean itemdespawnflicker_needsUpdate = false;

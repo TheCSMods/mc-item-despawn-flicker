@@ -12,7 +12,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.network.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
-import net.minecraft.network.packet.s2c.play.EntityVelocityUpdateS2CPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import thecsdev.itemdespawnflicker.config.IDFConfig;
 
@@ -48,7 +47,8 @@ public abstract class MixinServerPlayNetworkHandler
 		}
 		//check if it's an entity velocity update packet
 		//(this one is to really make sure it goes thru, because sometimes the previous one fails)
-		else if(packet instanceof EntityVelocityUpdateS2CPacket)
+		//(Note: no longer needed for now. the NBT tracker is sufficient enough, plus avoid packet spam)
+		/*else if(packet instanceof EntityVelocityUpdateS2CPacket)
 		{
 			//cast objects
 			ServerPlayNetworkHandler spnh = (ServerPlayNetworkHandler)(Object)this;
@@ -60,6 +60,6 @@ public abstract class MixinServerPlayNetworkHandler
 			//update clients on the entity's age
 			if(entity instanceof ItemEntity) //only do this for item entities
 				thecsdev.itemdespawnflicker.server.network.ServerPlayNetworkHandler.updateClientsEntityAge(entity);
-		}
+		}*/
 	}
 }

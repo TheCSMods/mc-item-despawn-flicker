@@ -46,37 +46,42 @@ public final class ClientPlayNetworkHandler
 			//iterate all items in the QUEUE
 			Iterator<Entry<Integer, Vector2>> entityAgeQueueIterator = ENTITY_AGE_QUEUE.entrySet().iterator();
 			while(entityAgeQueueIterator.hasNext())
-			{
-				//get the next item in the QUEUE
-				Entry<Integer, Vector2> eaqEntry = entityAgeQueueIterator.next();
-				Vector2 eaqEntryV = eaqEntry.getValue();
-				
-				//handle the timeout
-				if(eaqEntryV.y > 0) eaqEntryV.y--; //tick by tick, reduce the timeout
-				else
+				try
 				{
-					//timed out, remove it
-					try { entityAgeQueueIterator.remove(); }
-					catch(ConcurrentModificationException cme) { /*(2) you too, just for good measure*/ }
-					return;
+					//get the next item in the QUEUE
+					Entry<Integer, Vector2> eaqEntry = entityAgeQueueIterator.next();
+					Vector2 eaqEntryV = eaqEntry.getValue();
+					
+					//handle the timeout
+					if(eaqEntryV.y > 0) eaqEntryV.y--; //tick by tick, reduce the timeout
+					else
+					{
+						//timed out, remove it
+						entityAgeQueueIterator.remove();
+						continue;
+					}
+					
+					//get entity id and age
+					int entityId = eaqEntry.getKey();
+					int entityAge = eaqEntryV.x;
+					
+					//get entity
+					Entity entity = clientWorld.getEntityById(entityId);
+					if(entity == null) continue; //timeout will decrease as this returns
+					
+					//update item age
+					if(!(entity instanceof ItemEntity)) entity.age = entityAge;
+					else ((MixinItemEntity)entity).setItemAge(entityAge);
+					
+					//done. now remove it
+					entityAgeQueueIterator.remove();
 				}
-				
-				//get entity id and age
-				int entityId = eaqEntry.getKey();
-				int entityAge = eaqEntryV.x;
-				
-				//get entity
-				Entity entity = clientWorld.getEntityById(entityId);
-				if(entity == null) return; //timeout will decrease as this returns
-				
-				//update item age
-				if(!(entity instanceof ItemEntity)) entity.age = entityAge;
-				else ((MixinItemEntity)entity).setItemAge(entityAge);
-				
-				//done. now remove it
-				try { entityAgeQueueIterator.remove(); }
-				catch(ConcurrentModificationException cme) { /*(1) ah no you don't, not anymore*/ }
-			}
+				catch(ConcurrentModificationException cme)
+				{
+					/*looks like the network handler listener
+					 *below is causing this by adding items
+					 *while running in a separate thread*/
+				}
 		});
 		
 		//handle PNC_ENTITY_AGE packets
